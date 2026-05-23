@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap');
+@import 'katex/dist/katex.min.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gold: #c8a96e;
+  --gold-light: #e4c78b;
+  --gold-dark: #9a742e;
+  --bg-primary: #050507;
+  --bg-secondary: #0a0a0e;
+  --bg-card: #0f0f14;
+  --bg-elevated: #141418;
+  --border: rgba(200, 169, 110, 0.12);
+  --border-hover: rgba(200, 169, 110, 0.3);
+  --text-primary: #f8f6f0;
+  --text-secondary: rgba(248, 246, 240, 0.6);
+  --text-muted: rgba(248, 246, 240, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(200, 169, 110, 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(200, 169, 110, 0.5);
+}
+
+/* Selection */
+::selection {
+  background: rgba(200, 169, 110, 0.25);
+  color: var(--text-primary);
+}
+
+/* KaTeX overrides */
+.katex {
+  font-size: 1.1em;
+  color: var(--text-primary);
+}
+
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 1rem 0;
+}
+
+/* Glassmorphism */
+.glass {
+  background: rgba(15, 15, 20, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+}
+
+.glass-hover:hover {
+  background: rgba(20, 20, 28, 0.8);
+  border-color: var(--border-hover);
+}
+
+/* Gold text gradient */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #c8a96e 0%, #e4c78b 50%, #b8923a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Blueprint grid overlay */
+.bg-blueprint {
+  background-image:
+    linear-gradient(rgba(200, 169, 110, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200, 169, 110, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Gradient borders */
+.border-gold-gradient {
+  border: 1px solid transparent;
+  background: linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+              linear-gradient(135deg, rgba(200,169,110,0.5), rgba(200,169,110,0.1)) border-box;
+}
+
+/* Shimmer effect */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--bg-card) 25%,
+    rgba(200, 169, 110, 0.05) 50%,
+    var(--bg-card) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+/* Glow effects */
+.glow-gold {
+  box-shadow: 0 0 20px rgba(200, 169, 110, 0.2);
+}
+
+.glow-gold:hover {
+  box-shadow: 0 0 30px rgba(200, 169, 110, 0.35);
+}
+
+/* Mathematical decorative elements */
+.math-ornament {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: rgba(200, 169, 110, 0.25);
+  font-size: 8rem;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Prose / markdown content */
+.prose-math h1, .prose-math h2, .prose-math h3 {
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--text-primary);
+  margin-bottom: 0.5em;
+}
+
+.prose-math p {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.prose-math code {
+  font-family: 'JetBrains Mono', monospace;
+  background: rgba(200, 169, 110, 0.08);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-size: 0.875em;
+  color: var(--gold);
+}
+
+.prose-math pre {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+/* Focus ring */
+*:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* Page transitions */
+.page-enter {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.3s ease;
+}
