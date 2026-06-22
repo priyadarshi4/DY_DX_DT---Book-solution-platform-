@@ -3,8 +3,8 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { BookOpen, FileText, Users, MessageSquare, Heart, TrendingUp, Download, Plus } from 'lucide-react';
-import { adminAPI } from '@/lib/api';
+import { BookOpen, FileText, Users, MessageSquare, Heart, TrendingUp, Download, Plus, ClipboardList, Send } from 'lucide-react';
+import { adminAPI, testsAPI } from '@/lib/api';
 import { AdminStats, Book } from '@/types';
 import { Skeleton } from '@/components/shared/Skeleton';
 import { formatNumber } from '@/lib/utils';
@@ -41,11 +41,18 @@ function StatCard({ label, value, icon: Icon, color, delta }: {
 
 export default function AdminDashboard() {
   const [data, setData] = useState<StatsData | null>(null);
+  const [testCount, setTestCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    adminAPI.getStats()
-      .then(res => setData(res.data))
+    Promise.all([
+      adminAPI.getStats(),
+      testsAPI.adminGetAll().catch(() => ({ data: { tests: [] } }))
+    ])
+      .then(([statsRes, testsRes]) => {
+        setData(statsRes.data);
+        setTestCount(testsRes.data.tests?.length ?? 0);
+      })
       .catch(() => {})
       .finally(() => setIsLoading(false));
   }, []);
@@ -59,11 +66,14 @@ export default function AdminDashboard() {
     { label: 'Comments', value: stats?.comments || 0, icon: MessageSquare, color: 'bg-cyan-500/10 text-cyan-400', delta: undefined },
     { label: 'Likes', value: stats?.likes || 0, icon: Heart, color: 'bg-red-500/10 text-red-400', delta: undefined },
     { label: 'Questions', value: stats?.questions || 0, icon: TrendingUp, color: 'bg-emerald-500/10 text-emerald-400', delta: undefined },
+    { label: 'Tests', value: testCount, icon: ClipboardList, color: 'bg-amber-500/10 text-amber-400', delta: undefined },
   ];
 
   const quickActions = [
     { href: '/admin/books?action=new', label: 'Add Book', icon: BookOpen },
     { href: '/admin/solutions?action=new', label: 'Add Solution', icon: FileText },
+    { href: '/admin/tests', label: 'Create Test', icon: ClipboardList },
+    { href: '/admin/tests/submissions', label: 'View Submissions', icon: Send },
     { href: '/admin/comments', label: 'Manage Comments', icon: MessageSquare },
     { href: '/admin/users', label: 'Manage Users', icon: Users },
   ];

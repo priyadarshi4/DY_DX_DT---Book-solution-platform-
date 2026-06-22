@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   LayoutDashboard, BookOpen, FileText, MessageSquare, Users,
-  LogOut, Menu, X, ChevronRight, Settings
+  LogOut, Menu, X, ChevronRight, Settings, ClipboardList, Send
 } from 'lucide-react';
 import { useAuthStore } from '@/lib/store';
 import toast from 'react-hot-toast';
@@ -18,6 +18,8 @@ const navItems = [
   { href: '/admin/solutions', label: 'Solutions', icon: FileText },
   { href: '/admin/comments', label: 'Comments', icon: MessageSquare },
   { href: '/admin/users', label: 'Users', icon: Users },
+  { href: '/admin/tests', label: 'Tests & Exams', icon: ClipboardList, exact: true },
+  { href: '/admin/tests/submissions', label: 'Submissions', icon: Send },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {

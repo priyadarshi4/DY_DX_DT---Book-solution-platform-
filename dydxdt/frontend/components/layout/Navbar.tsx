@@ -38,6 +38,7 @@ export default function Navbar() {
     { href: '/books', label: 'Library' },
     { href: '/solutions', label: 'Solutions' },
     { href: '/categories', label: 'Categories' },
+    { href: '/tests', label: 'Tests' },
   ];
 
   return (

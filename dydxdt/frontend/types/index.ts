@@ -124,3 +124,84 @@ export const BOOK_CATEGORIES = [
 ] as const;
 
 export type BookCategory = typeof BOOK_CATEGORIES[number];
+
+// ─── Test System Types ────────────────────────────────────────────────────────
+
+export type QuestionType = 'MCQ' | 'SUBJECTIVE';
+export type Difficulty = 'Easy' | 'Medium' | 'Hard';
+export type SubmissionStatus = 'submitted' | 'evaluated' | 'results_published';
+
+export interface TestQuestion {
+  _id: string;
+  type: QuestionType;
+  question: string;
+  options: string[];          // MCQ: 4 options
+  correctAnswer?: string;     // "0"–"3", stripped for users
+  explanation?: string;       // stripped for users
+  marks: number;
+  order: number;
+}
+
+export interface Test {
+  _id: string;
+  title: string;
+  description: string;
+  duration: number;           // minutes
+  totalMarks: number;
+  difficulty: Difficulty;
+  category: string;
+  isPublished: boolean;
+  questions: TestQuestion[];
+  questionCount?: number;
+  createdBy: { _id: string; name: string };
+  attemptCount: number;
+  userStatus?: SubmissionStatus | null;
+  submissionCount?: number;
+  createdAt: string;
+}
+
+export interface UserAnswer {
+  questionId: string;
+  type: QuestionType;
+  selectedOption: string | null;
+  subjectiveText: string;
+  markedForReview: boolean;
+  awarded?: number | null;
+  feedback?: string;
+}
+
+export interface TestSubmission {
+  _id: string;
+  user: { _id: string; name: string; email: string; avatar: string };
+  test: Test | string;
+  answers: UserAnswer[];
+  submittedAt: string;
+  autoSubmitted: boolean;
+  timeSpent: number;
+  status: SubmissionStatus;
+}
+
+export interface TestResult {
+  _id: string;
+  user: { _id: string; name: string; avatar: string };
+  test: Test;
+  submission: string;
+  mcqMarks: number;
+  subjectiveMarks: number;
+  totalMarks: number;
+  maxMarks: number;
+  percentage: number;
+  correctAnswers: number;
+  wrongAnswers: number;
+  skippedAnswers: number;
+  rank: number | null;
+  isPublished: boolean;
+  evaluatedAt: string | null;
+  createdAt: string;
+}
+
+export interface SubjectiveScore {
+  questionId: string;
+  awarded: number;
+  feedback: string;
+}

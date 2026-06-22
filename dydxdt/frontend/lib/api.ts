@@ -111,4 +111,25 @@ export const searchAPI = {
   global: (q: string) => api.get('/search', { params: { q } })
 };
 
+// ─── Tests ───────────────────────────────────────────────────────────────────
+export const testsAPI = {
+  // User
+  getAll: () => api.get('/tests'),
+  getOne: (id: string) => api.get(`/tests/${id}`),
+  submit: (id: string, data: object) => api.post(`/tests/${id}/submit`, data),
+  getResult: (id: string) => api.get(`/tests/${id}/result`),
+  getLeaderboard: (id: string) => api.get(`/tests/${id}/leaderboard`),
+  // Admin
+  adminGetAll: () => api.get('/tests/admin/all'),
+  adminGetSubmissions: (params?: Record<string, string>) =>
+    api.get('/tests/admin/submissions', { params }),
+  adminGetSubmission: (id: string) => api.get(`/tests/admin/submissions/${id}`),
+  adminEvaluate: (submissionId: string, data: object) =>
+    api.post(`/tests/admin/evaluate/${submissionId}`, data),
+  create: (data: object) => api.post('/tests', data),
+  update: (id: string, data: object) => api.put(`/tests/${id}`, data),
+  delete: (id: string) => api.delete(`/tests/${id}`),
+  togglePublish: (id: string) => api.patch(`/tests/${id}/publish`),
+};
+
 export default api;

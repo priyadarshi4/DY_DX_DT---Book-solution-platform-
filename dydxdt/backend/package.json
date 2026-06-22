@@ -7,7 +7,6 @@
     "dev": "nodemon server.js",
     "seed": "node seed.js"
   },
-  
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cloudinary": "^1.41.3",

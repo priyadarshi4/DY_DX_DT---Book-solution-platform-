@@ -29,6 +29,7 @@ export default function Footer() {
                 { label: 'Library', href: '/books' },
                 { label: 'Solutions', href: '/solutions' },
                 { label: 'Categories', href: '/categories' },
+                { label: 'Tests & Exams', href: '/tests' },
               ].map((item) => (
                 <li key={item.label}>
                   <Link
@@ -65,7 +66,7 @@ export default function Footer() {
 
         <div className="border-t border-gold-500/8 mt-10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-xs text-white/25 font-mono">
-            © {new Date().getFullYear()} Priyadarshi Prince — All rights reserved
+            © {new Date().getFullYear()} Dy_Dx_Dt — All rights reserved
           </p>
           <p className="text-xs text-white/20 font-serif italic">
             "Mathematics is the language in which God has written the universe." — Galileo

@@ -18,7 +18,7 @@
     "axios": "^1.7.3",
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
-    "framer-motion": "^11.3.21",
+    "framer-motion": "^11.11.17",
     "katex": "^0.16.11",
     "lucide-react": "^0.439.0",
     "next": "15.0.0",
@@ -36,7 +36,6 @@
     "zustand": "^4.5.4"
   },
   "devDependencies": {
-    "@next/swc-win32-x64-msvc": "^16.2.6",
     "@types/katex": "^0.16.7",
     "@types/node": "^22.4.0",
     "@types/react": "^18.3.3",

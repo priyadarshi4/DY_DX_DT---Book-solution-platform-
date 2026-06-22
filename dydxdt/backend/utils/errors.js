@@ -10,7 +10,6 @@ const asyncHandler = (fn) => (req, res, next) =>
 /**
  * Custom API error with HTTP status.
  */
-
 class ApiError extends Error {
   constructor(message, status = 500) {
     super(message);
