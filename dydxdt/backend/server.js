@@ -14,6 +14,7 @@ const solutionRoutes = require('./routes/solutions');
 const commentRoutes = require('./routes/comments');
 const adminRoutes = require('./routes/admin');
 const searchRoutes = require('./routes/search');
+const testRoutes = require('./routes/tests');
 
 const app = express();
 
@@ -57,6 +58,7 @@ app.use('/api/solutions', solutionRoutes);
 app.use('/api/comments', commentRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/search', searchRoutes);
+app.use('/api/tests', testRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {
